@@ -30,6 +30,7 @@ public class XKCD{
             if(j == 25 || j == 21 || j == 15 || j == 9 || j == 5)
                 j++;
             if(sum + j <= 42){
+                System.out.println("Things are happening?");
                 word[i] = j;
                 sum += j;
                 answer(word, length, i + 1, sum);
