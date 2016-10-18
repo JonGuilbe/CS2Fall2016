@@ -2,29 +2,21 @@ import java.util.*;
 //Split array into 2
 public class Palindrome{
     static Integer[][] memo;
-    static String wordLeft;
-    static String wordRight;
     public static void main(String[] args) {
         Scanner stdin = new Scanner(System.in);
         String word = stdin.next();
         if (word.length() == 1)
             //Prevents any potential sneaky test cases
             System.out.println(1);
+        else if(word.length() == 2){
+            System.out.println(0);
+        }
         else {
-            wordLeft = word.substring(0, word.length() / 2);
-            if (word.length() % 2 == 1) {
-                int answer = 1;
-                wordRight = word.substring(word.length() / 2 + 1, word.length());
-            } else {
-                int answer = 0;
-                wordRight = word.substring(word.length() / 2, word.length());
-                {
-                    //replace math.max with rec, did this for compile reasons
-                    answer += (Math.max(0, wordLeft.length()) * 2);
-                }
-            }
+            memo = new Integer[word.length()][word.length()];
         }
     }
+
+    public static int rec()
     /*
     public static int rec(int i, int j)
    {
