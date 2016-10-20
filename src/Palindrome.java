@@ -1,5 +1,5 @@
 import java.util.*;
-//Split array into 2
+//Split array into 2   164    3
 public class Palindrome{
     static Integer[][] memo;
     public static void main(String[] args) {
@@ -13,10 +13,26 @@ public class Palindrome{
         }
         else {
             memo = new Integer[word.length()][word.length()];
+            System.out.println(rec(0,word.length()-1,word));
         }
     }
 
-    public static int rec()
+    public static int rec(int start, int end, String word){
+        if(memo[start][end] != null)
+            return memo[start][end];
+        if(start == end){
+            //System.out.println("Start is " + start + " and end is " + end);
+            return 1;
+        }
+        else if(start > end) return 0;
+        else if(word.charAt(start) == word.charAt(end)){
+            memo[start][end] = 2 + rec(start+1, end - 1, word);
+            return memo[start][end];
+        }
+        else{
+            memo[start][end] =  Math.max(rec(start, end-1,word), rec(start+1,end,word));
+            return memo[start][end];}
+    }
     /*
     public static int rec(int i, int j)
    {
