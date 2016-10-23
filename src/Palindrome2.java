@@ -8,7 +8,6 @@ public class Palindrome2{
         word = stdin.next();
         int length = word.length();
         if (length == 1)
-            //Prevents any potential sneaky test cases
             System.out.println(word);
         else {
             memo = new Integer[length][length];
