@@ -22,26 +22,6 @@ public class XKCD{
             answer(word, length, 0, 0, 26);
             printWords();
         }
-
-        // T E S T M O D E
-        /*
-        for (int i = 0; i < 43; i++) {
-            System.out.println("Word size " + i);
-            int length = i;
-
-            if(length > 7 || length < 2){
-            System.out.println("Mostly Harmless");
-        }
-        else{
-            Integer[] word = new Integer[length];
-            answer(word, length, 0, 0, 26);
-            printWords();
-        }
-
-            System.out.println("\n");
-            words.clear();
-        }
-        */
         
     } 
     
@@ -50,12 +30,12 @@ public class XKCD{
             addWord(word);
         if(i >= length)
             return;
-        //this sum won't work, will it?
+        if(sum > 42)
+            return;
         for(int j = max; j > 1; j--){
             if(j == 25 || j == 21 || j == 15 || j == 9 || j == 5)
                 j--;
             if(sum + j <= 42){
-                //System.out.println("Things are happening?");
                 word[i] = j;
                 sum += j;
                 answer(word, length, i + 1, sum, j - 1);
@@ -64,7 +44,6 @@ public class XKCD{
         }
     }
 
-    //The words need to be in alphabetical order, ughhhhh
     public static void addWord(Integer[] word){
         int temp = word[word.length - 1];
         word[word.length - 1] = word[word.length - 2];
