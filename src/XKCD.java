@@ -1,10 +1,4 @@
 import java.util.*;
-
-//Rules:
-//STRICTLY Decreasing order except for the last 2 letters
-//Must match length
-//No a, e, i, o, u, or y.
-//Gonna take some working out, not something I can quickly do now...
 public class XKCD{
 
     static ArrayList<String> words = new ArrayList<>();

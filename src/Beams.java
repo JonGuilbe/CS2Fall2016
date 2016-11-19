@@ -1,7 +1,3 @@
-/**
- * Created by Jonathan on 10/20/2016.
- */
-
 import java.util.*;
 import java.util.stream.Collectors;
 
