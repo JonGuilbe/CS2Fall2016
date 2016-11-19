@@ -28,7 +28,7 @@ public class Escape {
 
         for (int i = 0; i < simulations; i++) {
 
-            int spaceCopy[] = space.clone();
+            //int spaceCopy[] = space.clone();
             int rainStart = stdin.nextInt();
             int rainStop = stdin.nextInt();
             //long totalMove = ((distanceSum[rainStop] - distanceSum[rainStart]) - ((bunnySum[rainStop] - bunnySum[rainStart]) * (rainStart-1)));
