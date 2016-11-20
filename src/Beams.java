@@ -15,15 +15,15 @@ public class Beams {
                 if(length == 1)
                     break;
                 if(i == 0 || i == length - 1) {
-                    if (list.get(i) == list.get(length - 1)) {
-                        list.remove(i);
+                    if (list.get(0).equals(list.get(length - 1))) {
+                        list.remove(0);
                         list.remove(list.size() - 1);
                         length -= 2;
                         sum++;
                         i--;
                     }
                 }
-                if(i < length && i > -1 && list.get(i) == list.get(i + 1)){
+                if(i < length - 1 && i > -1 && list.get(i) == list.get(i + 1)){
                     list.remove(i);
                     list.remove(i + 1);
                     sum++;
@@ -31,7 +31,9 @@ public class Beams {
                     length -= 2;
                 }
             }
-            sum+= length / 4;
+            if(length > 1)
+                sum+= length / 2 - 1;
+
             System.out.println(sum);
         }
 

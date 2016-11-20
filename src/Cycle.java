@@ -3,6 +3,7 @@
  */
 import java.util.*;
 public class Cycle {
+
     public static void main(String[] args){
         Scanner stdin = new Scanner(System.in);
         int verticies = stdin.nextInt();
