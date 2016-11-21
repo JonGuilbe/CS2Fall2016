@@ -12,24 +12,34 @@ public class Mars {
         Scanner stdin = new Scanner(System.in);
         height = stdin.nextInt();
         width = stdin.nextInt();
-        String[] grid = new String[height]; //this is NOT okay because we need to find the starting point...
+        String[] grid = new String[height];
+        int startX = 0, startY = 0;
         for(int i = 0; i < height; i ++){
             grid[i] = stdin.next();
+            for (int j = 0; j < width; j++) {
+                if(grid[i].charAt(j) == 'R'){
+                    startX = i;
+                    startY = j;
+                }
+            }
         }
         boolean visited[][] = new boolean[height][width];
-        dfs(grid, visited, 0, 3, 0);
+        dfs(grid, visited, startX, startY, 0);
         System.out.println(minDepth + " " + solutions);
     }
 
     public static void dfs(String[] grid, boolean[][] visited, int x, int y, int depth){
         if(grid[x].charAt(y) == 'G'){
-            //System.out.println("Solution found with depth " + depth + "!");
-            solutions++;
-            minDepth = Math.min(minDepth, depth);
+            int bestDepth = Math.min(minDepth, depth);
+            if(bestDepth != minDepth){
+                minDepth = bestDepth;
+                solutions = 1;
+            }
+            else if(depth == minDepth)
+                solutions++;
             return;
         }
         visited[x][y] = true;
-        //printVisited(visited);
         for(int i = 0; i < 4; i++){
             int newX = x + directionX[i];
             int newY = y + directionY[i];
@@ -40,24 +50,8 @@ public class Mars {
         visited[x][y] = false;
     }
 
-    /*public int bfs(String[] grid, int width, boolean[][] visited, int x, int y){ //finds the shortest path
-        return 1;
-    } */
-
     public static boolean isValidLocation(int x, int y){
         return!(x >= height || x  < 0 || y  >= width || y  < 0);
     }
 
-    public static void printVisited(boolean visited[][]){
-        for (int i = 0; i < visited.length; i++) {
-            for (int j = 0; j < visited[i].length; j++) {
-                if(visited[i][j])
-                    System.out.print('X');
-                else
-                    System.out.print('.');
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
 }
