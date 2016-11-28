@@ -23,8 +23,6 @@ public class Destroyer {
         System.out.println(weightTotal - getMSTCost(vertices, adjList));
     }
 
-    final int INF = 987654321;
-
     public static int getMSTCost(int numVertices, int[][] edgeList) {
         // O(E log E)
         Arrays.sort(edgeList, Comparator.comparingInt(a -> a[2]));
@@ -36,15 +34,12 @@ public class Destroyer {
             if(ds.union(edgeList[i][0],edgeList[i][1]))
                 resultCost += edgeList[i][2];
         }
-        //for (int[] e : edgeList)
-          //  if (ds.union(e[0], e[1]))
-            //    resultCost += e[2];
         return resultCost;
     }
 
     public static class DisjointSet {
-        protected int size;
-        protected int[] parent, rank;
+        int size;
+        int[] parent, rank;
 
         public DisjointSet(int size) {
             this.size = size;

@@ -29,7 +29,7 @@ public class Mining {
         if(row >= rows || column >= columns)
             return 0;
         if(memo[row][column] != null){
-            System.out.println("Debug 1");
+            //System.out.println("Debug 1");
             return memo[row][column];}
         int sum = 0;
         if(!isValidLocation(row, column,grid))

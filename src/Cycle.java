@@ -22,9 +22,13 @@ public class Cycle {
             adjList[x].add(y);
             adjList[y].add(x);
         }
-        for (int i = 1; i < vertices; i++) {
+        /*for (int i = 1; i < vertices; i++) {
             if(!visited[i])
                 dfs(adjList, i, visited, -1);
+        }*/
+        for (int i = 1; i < vertices; i++) {
+            if(!visited[i] && !cycleFound)
+                neoDFS(adjList, i, i, visited, -1);
         }
         if(cycleFound)
             System.out.println("Yes");
@@ -44,6 +48,23 @@ public class Cycle {
                 return;
             }
         }
+    }
+
+    public static void neoDFS(node[] adjList, int index, int start, boolean[] visited, int previous){
+        if(cycleFound)
+            return;
+        if(visited[index]){
+            if(index == start) {
+                cycleFound = true;
+            }
+            return;
+        }
+        visited[index] = true;
+        for (int i = 0; i < adjList[index].connectedTo.size(); i++) {
+            if(adjList[index].connectedTo.get(i) != previous)
+                neoDFS(adjList, adjList[index].connectedTo.get(i), start, visited, index);
+        }
+        visited[index] = false;
     }
 
     public static class node{

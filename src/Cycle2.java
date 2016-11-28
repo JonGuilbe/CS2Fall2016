@@ -51,7 +51,6 @@ public class Cycle2 {
                 System.out.print(answer.get(j) + " ");
             }
         }
-
         else
             System.out.println("No");
     }
@@ -110,6 +109,7 @@ public class Cycle2 {
                     answer = (ArrayList<Integer>)tempAnswer.clone();
                 }
                 else if(cycleFound && depth < shortestCycle){
+                    //System.out.println("New shortest!");
                     if(tempAnswer.indexOf(index) == -1)
                         return;
                     tempAnswer.subList(0, tempAnswer.indexOf(index)).clear();
@@ -117,8 +117,10 @@ public class Cycle2 {
                     answer = (ArrayList<Integer>)tempAnswer.clone();
                 }
                 else if(cycleFound && depth == shortestCycle){
+                    //System.out.println("Trying to find a minnne!");
                     int x = 0;
                     while(x < depth - 1 && Objects.equals(tempAnswer.get(x), answer.get(x))){
+                        //System.out.println("Trying to find a min!");
                         x++;
                     }
                     if(tempAnswer.get(x).compareTo(answer.get(x)) == -1)
@@ -130,9 +132,12 @@ public class Cycle2 {
         visited[index] = true;
         tempAnswer.add(index);
         for (int i = 0; i < adjList[index].connectedTo.size(); i++) {
-            if(adjList[index].connectedTo.get(i) != previous)
-            neoDFS(adjList, adjList[index].connectedTo.get(i), start, visited, index, tempAnswer);
+            if(adjList[index].connectedTo.get(i) != previous){
+               // System.out.printf("%d connecting to %d\n", index, adjList[index].connectedTo.get(i));
+            neoDFS(adjList, adjList[index].connectedTo.get(i), start, visited, index, tempAnswer);}
         }
+        if(tempAnswer.indexOf(index) != -1)
+            tempAnswer.remove(tempAnswer.indexOf(index));
         visited[index] = false;
     }
 
